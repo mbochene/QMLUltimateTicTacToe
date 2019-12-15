@@ -18,12 +18,7 @@ Rectangle {
 
     function markMove(board, field, symbol)
     {
-        var boardItem = localBoardsRepeater.itemAt(board).markMove(field, symbol)
-    }
-
-    function highlightBoards(boards)
-    {
-        highlightedBoards = Object.keys(boards).map(i => boards[i])
+        localBoardsRepeater.itemAt(board).markMove(field, symbol)
     }
 
     function swapBoardToSymbol(board, symbol)
@@ -31,9 +26,15 @@ Rectangle {
         localBoardsRepeater.itemAt(board).symbol = symbol
     }
 
-    function showEndRound()
+    function prepareNewRound()
     {
         highlightedBoards = []
+        whoseTurnLabel.symbol = "X"
+
+        for(var i=0; i<9; ++i)
+            localBoardsRepeater.itemAt(i).symbol = ""
+
+        gameEngine.prepareNewGame()
     }
 
     Component.onCompleted:

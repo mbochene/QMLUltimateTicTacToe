@@ -4,5 +4,9 @@
         <file>MainBoard.qml</file>
         <file>LocalBoard.qml</file>
         <file>Field.qml</file>
+        <file>WhoseTurnText.qml</file>
+        <file>ResetButton.qml</file>
+        <file>WhoseTurnLabel.qml</file>
+        <file>SymbolCanvas.qml</file>
     </qresource>
 </RCC>
