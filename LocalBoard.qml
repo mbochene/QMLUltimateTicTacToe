@@ -27,7 +27,11 @@ Rectangle {
     }
 
     onSymbolChanged: {
+        if(boardSymbolChangeAnimation.running)
+            boardSymbolChangeAnimation.stop()
+
         boardSymbolChangeAnimation.start()
+
         for(var i=0; i<9; ++i)
         {
             fieldsRepeater.itemAt(i).symbol = "";
