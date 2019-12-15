@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>MainBoard.qml</file>
         <file>LocalBoard.qml</file>
+        <file>Field.qml</file>
     </qresource>
 </RCC>

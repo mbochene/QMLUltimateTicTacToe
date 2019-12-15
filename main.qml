@@ -18,5 +18,11 @@ Window {
 
     Game {
         id: gameEngine
+        Component.onCompleted: {
+            gameEngine.markMove.connect(mainBoard.markMove)
+            gameEngine.highlightPermittedBoards.connect(mainBoard.highlightBoards)
+            gameEngine.markLocalWin.connect(mainBoard.swapBoardToSymbol)
+            gameEngine.globalWin.connect(mainBoard.showEndRound)
+        }
     }
 }

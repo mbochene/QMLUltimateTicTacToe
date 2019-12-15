@@ -5,13 +5,41 @@ Rectangle {
     id: mainBoard
     width: parent.width * 0.75
     height: parent.height-40
+    color: "gray"
 
     anchors {
         top: parent.top
         left: parent.left
     }
 
-    color: "gray"
+    property var highlightedBoards: []
+
+    signal reportMove(int board, int field)
+
+    function markMove(board, field, symbol)
+    {
+        var boardItem = localBoardsRepeater.itemAt(board).markMove(field, symbol)
+    }
+
+    function highlightBoards(boards)
+    {
+        highlightedBoards = Object.keys(boards).map(i => boards[i])
+    }
+
+    function swapBoardToSymbol(board, symbol)
+    {
+        localBoardsRepeater.itemAt(board).symbol = symbol
+    }
+
+    function showEndRound()
+    {
+        highlightedBoards = []
+    }
+
+    Component.onCompleted:
+    {
+        mainBoard.reportMove.connect(gameEngine.processMove)
+    }
 
     Rectangle {
         id: boardsFrame
@@ -26,8 +54,10 @@ Rectangle {
             height: width
             columns: 3
             spacing: 0.01 * height
+            property int cos: 11
 
             Repeater {
+                id: localBoardsRepeater
                 model: 9
 
                 LocalBoard {
